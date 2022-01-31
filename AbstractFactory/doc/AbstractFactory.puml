@@ -1,0 +1,82 @@
+@startuml AbstractFactoryExample
+
+object Client {
+    -factory
+    +createContentLocally()
+}
+
+interface LocalFile {
+    +getNameOfOperatingSystem()
+    +addFileOnLocalSystem()
+}
+interface InputField {
+    +addText()
+    +createTextFile()
+}
+
+interface ContentFactory {
+    +createLocalFile()
+    +createInputField()
+}
+
+class WinContentFactory {
+    +createLocalFile()
+    +createInputField()
+}
+
+class WinLocalFile {
+    +getNameOfOperatingSystem()
+    +addFileOnLocalSystem()
+}
+class WinInputField {
+    +addText()
+    +createTextFile()
+}
+
+class MacContentFactory {
+    +createLocalFile()
+    +createInputField()
+}
+
+class MacLocalFile {
+    +getNameOfOperatingSystem()
+    +addFileOnLocalSystem()
+}
+class MacInputField {
+    +addText()
+    +createTextFile()
+}
+
+note top of ContentFactory : Abstract Factory
+
+note "Product" as Product
+Product .. LocalFile
+Product .. InputField
+
+note "Concrete Factory" as ConcreteFactory
+ConcreteFactory .. WinContentFactory
+ConcreteFactory .. MacContentFactory
+
+note "Concrete Product" as ConcreteProduct
+ConcreteProduct .. WinLocalFile
+ConcreteProduct .. WinInputField
+ConcreteProduct .. MacLocalFile
+ConcreteProduct .. MacInputField
+
+Client --> ContentFactory
+
+ContentFactory <|.. WinContentFactory
+ContentFactory <|.. MacContentFactory
+
+WinContentFactory ..> LocalFile
+WinContentFactory ..> InputField
+
+MacContentFactory ..> LocalFile
+MacContentFactory ..> InputField
+
+LocalFile <|.. MacLocalFile
+LocalFile <|.. WinLocalFile
+
+InputField <|.. WinInputField
+InputField <|.. MacInputField
+@enduml
