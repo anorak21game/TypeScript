@@ -63,7 +63,7 @@ ConcreteProduct .. WinInputField
 ConcreteProduct .. MacLocalFile
 ConcreteProduct .. MacInputField
 
-Client --> ContentFactory
+Client ..> ContentFactory
 
 ContentFactory <|.. WinContentFactory
 ContentFactory <|.. MacContentFactory

@@ -1,12 +1,12 @@
 {
-  "name": "abstractfactory",
+  "name": "abstract-factory",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src",
   "scripts": {
     "build": "tsc -p .",
-    "dev": "NODE_ENV=dev nodemon -r tsconfig-paths/register src/Client.ts",
-    "test": "NODE_ENV=test mocha --check-leaks -r tsconfig-paths/register -r ts-node/register \"test/**/*.spec.ts\""
+    "dev": "NODE_ENV=dev nodemon -r tsconfig-paths/register src/index.ts",
+    "test": "NODE_ENV=test mocha --check-leaks -r tsconfig-paths/register -r ts-node/register \"test/*.spec.ts\""
   },
   "author": "",
   "license": "ISC",
