@@ -1,0 +1,33 @@
+@startuml FactoryMethod
+
+class Creator {
+    +someOperation()
+    +createProduct()
+}
+
+class ConcreteCreatorA {
+    +createProduct()
+}
+
+class ConcreteCreatorB {
+    +createProduct()
+}
+
+interface Product {
+    soStuff()
+}
+
+class ConcreteProductA {
+
+}
+
+class ConcreteProductB {
+    
+}
+
+Creator <|-- ConcreteCreatorA
+Creator <|-- ConcreteCreatorB
+Creator ..> Product
+Product <|.. ConcreteProductA
+Product <|.. ConcreteProductB
+@enduml

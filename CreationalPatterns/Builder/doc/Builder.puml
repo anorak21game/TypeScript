@@ -1,0 +1,43 @@
+@startuml Builder
+
+object Client {
+    -director
+    -builder
+    +make()
+}
+
+class Director {
+    -builder
+    +setBuilder()
+    +buildMinimalViableProduct()
+    +buildFullFeaturedProduct()
+}
+
+interface Builder {
+    +reset()
+    +producePartA()
+    +producePartB()
+    +producePartC()
+    +getProduct()
+}
+
+class Product1 {
+    +parts
+    +listParts()
+}
+
+class ConcreteBuilder1 {
+    -product
+    +reset()
+    +producePartA()
+    +producePartB()
+    +producePartC()
+    +getProduct()
+}
+
+Client --> Director
+Client ..> Builder
+Director --> Builder
+Builder <|-- ConcreteBuilder1
+Product1 <-- ConcreteBuilder1
+@enduml
