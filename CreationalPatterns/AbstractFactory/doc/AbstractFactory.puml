@@ -1,82 +1,67 @@
-@startuml AbstractFactoryExample
+@startuml AbstractFactory
 
 object Client {
     -factory
-    +createContentLocally()
+    +Client()
+    +someOperation()
 }
 
-interface LocalFile {
-    +getNameOfOperatingSystem()
-    +addFileOnLocalSystem()
-}
-interface InputField {
-    +addText()
-    +createTextFile()
+interface AbstractFactory {
+    +createProductA()
+    +createProductB()
 }
 
-interface ContentFactory {
-    +createLocalFile()
-    +createInputField()
+class ConcreteFactory1 {
+    +createProductA()
+    +createProductB()
 }
 
-class WinContentFactory {
-    +createLocalFile()
-    +createInputField()
+class ConcreteFactory2 {
+    +createProductA()
+    +createProductB()
 }
 
-class WinLocalFile {
-    +getNameOfOperatingSystem()
-    +addFileOnLocalSystem()
-}
-class WinInputField {
-    +addText()
-    +createTextFile()
+interface ProductA {
+    +usefulFunctionA()
 }
 
-class MacContentFactory {
-    +createLocalFile()
-    +createInputField()
+class ConcreteProductA1 {
+    +usefulFunctionA()
 }
 
-class MacLocalFile {
-    +getNameOfOperatingSystem()
-    +addFileOnLocalSystem()
-}
-class MacInputField {
-    +addText()
-    +createTextFile()
+class ConcreteProductA2 {
+    +usefulFunctionA()
 }
 
-note top of ContentFactory : Abstract Factory
+interface ProductB {
+    +usefulFunctionB()
+    +anotherUsefulFunctionB()
+}
 
-note "Product" as Product
-Product .. LocalFile
-Product .. InputField
+class ConcreteProductB1 {
+    +usefulFunctionB()
+    +anotherUsefulFunctionB()
+}
 
-note "Concrete Factory" as ConcreteFactory
-ConcreteFactory .. WinContentFactory
-ConcreteFactory .. MacContentFactory
+class ConcreteProductB2 {
+    +usefulFunctionB()
+    +anotherUsefulFunctionB()
+}
 
-note "Concrete Product" as ConcreteProduct
-ConcreteProduct .. WinLocalFile
-ConcreteProduct .. WinInputField
-ConcreteProduct .. MacLocalFile
-ConcreteProduct .. MacInputField
+Client ..> AbstractFactory
 
-Client ..> ContentFactory
+AbstractFactory <|.. ConcreteFactory1
+AbstractFactory <|.. ConcreteFactory2
 
-ContentFactory <|.. WinContentFactory
-ContentFactory <|.. MacContentFactory
+ConcreteFactory1 ..> ProductA
+ConcreteFactory1 ..> ProductB
 
-WinContentFactory ..> LocalFile
-WinContentFactory ..> InputField
+ConcreteFactory2 ..> ProductA
+ConcreteFactory2 ..> ProductB
 
-MacContentFactory ..> LocalFile
-MacContentFactory ..> InputField
+ProductA <|.. ConcreteProductA2
+ProductA <|.. ConcreteProductA1
 
-LocalFile <|.. MacLocalFile
-LocalFile <|.. WinLocalFile
-
-InputField <|.. WinInputField
-InputField <|.. MacInputField
+ProductB <|.. ConcreteProductB1
+ProductB <|.. ConcreteProductB2
 @enduml
