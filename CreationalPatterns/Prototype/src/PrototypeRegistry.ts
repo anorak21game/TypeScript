@@ -6,12 +6,12 @@ export default class PrototypeRegistry {
 
     constructor() {
         this._items = [];
-        this._id = 0;
+        this._id = 1;
     }
 
     public addItem(prototype: Prototype) {
         prototype.id = this._id;
-        prototype.name = `Prototype ${this._id}`;
+        prototype.name = prototype.name + ` ${this._id}`;
         this._items.push(prototype);
         this._id = this._id + 1;
     }

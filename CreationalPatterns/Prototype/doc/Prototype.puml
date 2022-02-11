@@ -1,0 +1,54 @@
+@startuml Prototyp
+
+class Client {
+
+}
+
+class PrototypRegistry {
+    -items
+    -id
+    +addItem()
+    +getItemById()
+}
+
+interface Prototyp {
+    +name
+    +id
+    +primitive
+    +component
+    +circularReference
+    -newDate()
+    +clone()
+}
+
+class ConcretePrototypA {
+    +name
+    +id
+    +primitive
+    +component
+    +circularReference
+    -newDate()
+    +clone()
+}
+
+class ConcretePrototypB {
+    +name
+    +id
+    +primitive
+    +component
+    +circularReference
+    -newDate()
+    +clone()
+}
+
+class ComponentWithBackReference {
+
+}
+
+Client --> PrototypRegistry
+PrototypRegistry o-- Prototyp
+Prototyp <|.. ConcretePrototypA
+Prototyp <|.. ConcretePrototypB
+ConcretePrototypA ..> ComponentWithBackReference
+ConcretePrototypB ..> ComponentWithBackReference
+@enduml

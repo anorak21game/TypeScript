@@ -2,23 +2,56 @@
 export default interface Prototype {
     name: string;
     id: number;
-    primitive: any;
+    data: any;
     component: object;
     circularReference: ComponentWithBackReference;
     clone(): object;
 }
 
-export class ConcretePrototype {
+export class ConcretePrototypeA {
     public name: string;
     public id: number;
-    public primitive: any;
+    public data: any;
+    public component!: object;
+    public circularReference: ComponentWithBackReference;
+
+    constructor() {
+        this.name = "Prototype A";
+        this.id = 0;
+        this.data = 0;
+        this.component = new Date();
+        this.circularReference = new ComponentWithBackReference(this);
+    }
+
+    private newDate():object {
+        return this.component = new Date();
+    }
+
+    public clone(): this {
+        const clone = Object.create(this);
+
+        clone.component = Object.create(this.newDate());
+
+        clone.circularReference = {
+            ...this.circularReference,
+            prototype: { ...this },
+        };
+
+        return clone;
+    }
+}
+
+export class ConcretePrototypeB {
+    public name: string;
+    public id: number;
+    public data: any;
     public component!: object;
     public circularReference!: ComponentWithBackReference;
 
     constructor() {
-        this.name = "";
+        this.name = "Prototype B";
         this.id = 0;
-        this.primitive = 0;
+        this.data = 0;
         this.component = new Date();
         this.circularReference = new ComponentWithBackReference(this);
     }
