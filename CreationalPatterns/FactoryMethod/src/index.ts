@@ -1,7 +1,7 @@
 import Creator from 'Creator';
 import { ConcreteCreator1, ConcreteCreator2 } from 'Creator';
 
-function clientCode(creator: Creator) {
+export function clientCode(creator: Creator) {
     console.log('Client: I\'m not aware of the creator\'s class, but it still works.');
     console.log(creator.someOperation());
 }

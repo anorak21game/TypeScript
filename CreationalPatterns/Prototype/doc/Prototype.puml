@@ -14,8 +14,8 @@ class PrototypRegistry {
 interface Prototyp {
     +name
     +id
-    +primitive
-    +component
+    +config
+    +creationTime
     +circularReference
     -newDate()
     +clone()
@@ -24,8 +24,8 @@ interface Prototyp {
 class ConcretePrototypA {
     +name
     +id
-    +primitive
-    +component
+    +config
+    +creationTime
     +circularReference
     -newDate()
     +clone()
@@ -34,8 +34,8 @@ class ConcretePrototypA {
 class ConcretePrototypB {
     +name
     +id
-    +primitive
-    +component
+    +config
+    +creationTime
     +circularReference
     -newDate()
     +clone()

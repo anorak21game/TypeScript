@@ -1,9 +1,8 @@
-
 export default interface Prototype {
     name: string;
     id: number;
-    data: any;
-    component: object;
+    config: any;
+    creationTime: object;
     circularReference: ComponentWithBackReference;
     clone(): object;
 }
@@ -11,26 +10,26 @@ export default interface Prototype {
 export class ConcretePrototypeA {
     public name: string;
     public id: number;
-    public data: any;
-    public component!: object;
+    public config: any;
+    public creationTime!: object;
     public circularReference: ComponentWithBackReference;
 
     constructor() {
         this.name = "Prototype A";
         this.id = 0;
-        this.data = 0;
-        this.component = new Date();
+        this.config = 0;
+        this.creationTime = new Date();
         this.circularReference = new ComponentWithBackReference(this);
     }
 
     private newDate():object {
-        return this.component = new Date();
+        return this.creationTime = new Date();
     }
 
     public clone(): this {
         const clone = Object.create(this);
 
-        clone.component = Object.create(this.newDate());
+        clone.creationTime = Object.create(this.newDate());
 
         clone.circularReference = {
             ...this.circularReference,
@@ -44,26 +43,26 @@ export class ConcretePrototypeA {
 export class ConcretePrototypeB {
     public name: string;
     public id: number;
-    public data: any;
-    public component!: object;
+    public config: any;
+    public creationTime!: object;
     public circularReference!: ComponentWithBackReference;
 
     constructor() {
         this.name = "Prototype B";
         this.id = 0;
-        this.data = 0;
-        this.component = new Date();
+        this.config = 0;
+        this.creationTime = new Date();
         this.circularReference = new ComponentWithBackReference(this);
     }
 
     private newDate():object {
-        return this.component = new Date();
+        return this.creationTime = new Date();
     }
 
     public clone(): this {
         const clone = Object.create(this);
 
-        clone.component = Object.create(this.newDate());
+        clone.creationTime = Object.create(this.newDate());
 
         clone.circularReference = {
             ...this.circularReference,

@@ -5,14 +5,14 @@ function timer(code: any, time: number) {
     setTimeout(function () {return code}, time);
 }
 
-function clientCode() {
+export function clientCode() {
     const prototypeRegistry = new PrototypeRegistry();
 
     const prototypeA = new ConcretePrototypeA();
-    prototypeA.data = 123456789;
+    prototypeA.config = 123456789;
 
     const prototypeB = new ConcretePrototypeB();
-    prototypeB.data = 987654321;
+    prototypeB.config = 987654321;
 
     timer(prototypeRegistry.addItem(prototypeA.clone()), 0);
     timer(prototypeRegistry.addItem(prototypeA.clone()), 50000);
@@ -26,22 +26,22 @@ function clientCode() {
     console.log(prototypeCloneA2);
     console.log(prototypeCloneB3);
 
-    if (prototypeCloneA1.data === prototypeCloneA2.data) {
-        console.log('data field values have been carried over to a clone. Yay!');
+    if (prototypeCloneA1.config === prototypeCloneA2.config) {
+        console.log('Config have been carried over to a clone. Yay!');
     } else {
-        console.log('data field values have not been copied. Booo!');
+        console.log('Config have not been copied. Booo!');
     }
 
-    if (prototypeCloneA1.data === prototypeCloneB3.data) {
-        console.log('Clone A and B have been the same data value. Booo!');
+    if (prototypeCloneA1.config === prototypeCloneB3.config) {
+        console.log('Clone from prototype A and B have been the same config. Booo!');
     } else {
-        console.log('Clone A and B have not been the same data value. Yay!');
+        console.log('Clone from prototype A and B have not been the same config. Yay!');
     }
 
-    if (prototypeCloneA1.component === prototypeCloneA2.component) {
-        console.log('Simple component has not been cloned. Booo!');
+    if (prototypeCloneA1.creationTime === prototypeCloneA2.creationTime) {
+        console.log('Simple creationTime has not been cloned. Booo!');
     } else {
-        console.log('Simple component has been cloned. Yay!');
+        console.log('Simple creationTime has been cloned. Yay!');
     }
 
     if (prototypeCloneA1.circularReference === prototypeCloneA2.circularReference) {
@@ -50,7 +50,7 @@ function clientCode() {
         console.log('Component with back reference has been cloned. Yay!');
     }
 
-    if (prototypeCloneA1.circularReference.prototype.component === prototypeCloneA2.circularReference.prototype.component) {
+    if (prototypeCloneA1.circularReference.prototype.creationTime === prototypeCloneA2.circularReference.prototype.creationTime) {
         console.log('Component with back reference is linked to original object. Booo!');
     } else {
         console.log('Component with back reference is linked to the clone and own clone time. Yay!');
