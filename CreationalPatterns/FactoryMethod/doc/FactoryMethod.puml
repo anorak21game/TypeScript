@@ -1,28 +1,28 @@
 @startuml FactoryMethod
 
-class Creator {
+abstract Creator {
     +someOperation()
-    +createProduct()
+    {abstract} factoryMethod()
 }
 
 class ConcreteCreatorA {
-    +createProduct()
+    +factoryMethod()
 }
 
 class ConcreteCreatorB {
-    +createProduct()
+    +factoryMethod()
 }
 
 interface Product {
-    soStuff()
+    +operation()
 }
 
 class ConcreteProductA {
-
+    +operation()
 }
 
 class ConcreteProductB {
-    
+    +operation()
 }
 
 Creator <|-- ConcreteCreatorA

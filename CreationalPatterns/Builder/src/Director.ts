@@ -10,12 +10,12 @@ export default class Director {
     }
 
     public buildMinimalViableProduct(): void {
-        this.builder.producePartA();
+        this.builder.buildStepA();
     }
 
     public buildFullFeaturedProduct(): void {
-        this.builder.producePartA();
-        this.builder.producePartB();
-        this.builder.producePartC();
+        this.builder.buildStepA();
+        this.builder.buildStepB();
+        this.builder.buildStepC();
     }
 }

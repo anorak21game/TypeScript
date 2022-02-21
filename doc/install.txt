@@ -32,12 +32,14 @@ $>tsc --init
 ->files.spec.ts
 
 import request from "supertest";
-import expect from 'chai';
+import { expect } from 'chai';
 
-describe("server checks", function(){
-    it("server is created without error", function(done){
-        request(app).get("/").expect(200, done);
-    })
+// import Client from 'index'; 
+
+describe(`client test:\n`, function () {
+    it("something", function () {
+        // 
+    });
 });
 
 $>npm test
