@@ -1,0 +1,34 @@
+@startuml Adapter
+
+object Client 
+
+interface Standard {
+    +request()
+}
+
+class Compatible {
+    +request()
+}
+
+class Adapter {
+    -different
+    +request()
+}
+
+interface Different {
+    +invertedRequest()
+}
+
+class Incompatible {
+    +invertedRequest()
+}
+
+Client --> Standard
+Client ..> Compatible
+Client ..> Adapter
+Standard <|.. Compatible
+Standard <|.. Adapter
+Compatible <|-- Adapter
+Different <|.. Incompatible
+Incompatible <-- Adapter
+@enduml

@@ -1,16 +1,25 @@
-import Adaptee from 'Adaptee';
-import Target from 'Target';
+import Different from './Different';
 
-export default class Adapter extends Target {
-    private adaptee: Adaptee;
+export default interface Standard {
+    request(): any;
+}
 
-    constructor(adaptee: Adaptee) {
+export class Compatible implements Standard {
+    public request(): string {
+        return 'Standard: The default Standard\'s behavior.';
+    }
+}
+
+export class Adapter extends Compatible implements Standard {
+    private different: Different;
+
+    constructor(Different: Different) {
         super();
-        this.adaptee = adaptee;
+        this.different = Different;
     }
 
     public request(): string {
-        const result = this.adaptee.specificRequest().split('').reverse().join('');
+        const result = this.different.invertedRequest().split('').reverse().join('');
         return `Adapter: (TRANSLATED) ${result}`;
     }
 }

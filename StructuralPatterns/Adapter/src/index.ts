@@ -1,23 +1,23 @@
-import Target from 'Target';
-import Adaptee from 'Adaptee';
-import Adapter from 'Adapter';
+import Standard from './Adapter';
+import { Compatible, Adapter } from './Adapter';
+import { Incompatible } from './Different';
 
-function clientCode(target: Target) {
-    console.log(target.request());
+function clientCode(Standard: Standard) {
+    console.log(Standard.request());
 }
 
-console.log('Client: I can work just fine with the Target objects:');
-const target = new Target();
-clientCode(target);
+console.log('Client: I can work just fine with the Compatible objects:');
+const compatible = new Compatible();
+clientCode(compatible);
 
 console.log('');
 
-const adaptee = new Adaptee();
-console.log('Client: The Adaptee class has a weird interface. See, I don\'t understand it:');
-console.log(`Adaptee: ${adaptee.specificRequest()}`);
+const incompatible = new Incompatible();
+console.log('Client: The Incompatible class has a different interface. See, I don\'t understand it:');
+console.log(`Different: ${incompatible.invertedRequest()}`);
 
 console.log('');
 
-console.log('Client: But I can work with it via the Adapter:');
-const adapter = new Adapter(adaptee);
+console.log('Client: But I can work with it via Adapter:');
+const adapter = new Adapter(incompatible);
 clientCode(adapter);
