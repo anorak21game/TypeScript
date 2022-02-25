@@ -12,8 +12,8 @@ $>npm i -D @types/chai @types/mocha @types/node @types/supertest @types/express
 
 "scripts": {
     "build": "tsc -p .",
-    "dev": "NODE_ENV=dev nodemon -r tsconfig-paths/register \"src/index.ts\"",
-    "test": "NODE_ENV=test mocha --check-leaks -r tsconfig-paths/register -r ts-node/register \"src/index.ts\" \"test/*.spec.ts\""
+    "dev": "NODE_ENV=dev nodemon -r tsconfig-paths/register src/index.ts",
+    "test": "NODE_ENV=test mocha --check-leaks -r tsconfig-paths/register -r ts-node/register test/*.spec.ts"
 },
 
 $>tsc --init

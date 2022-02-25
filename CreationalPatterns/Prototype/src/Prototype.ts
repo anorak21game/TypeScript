@@ -7,7 +7,7 @@ export default interface Prototype {
     clone(): object;
 }
 
-export class ConcretePrototypeA {
+export class ConcretePrototypeA implements Prototype {
     public name: string;
     public id: number;
     public config: any;
@@ -40,7 +40,7 @@ export class ConcretePrototypeA {
     }
 }
 
-export class ConcretePrototypeB {
+export class ConcretePrototypeB implements Prototype {
     public name: string;
     public id: number;
     public config: any;
